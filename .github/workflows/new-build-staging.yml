@@ -1,5 +1,5 @@
-name: Build and push the latest build to staging
-
+name: Build and push latest build to staging
+  
 on:
   push:
     branches: [ main ]
@@ -10,10 +10,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
-      - name: Build and push staging image
-        uses: docker/build-push-action@v1.1.1
-        with:
+        
+      - name: Build and push Docker images
+        
+        uses: docker/build-push-action@v2.2.0
+          with:
           username: ${{ secrets.ACR_LOGIN }}
           password: ${{ secrets.ACR_PASSWORD }}
           registry: ${{ secrets.ACR_NAME }}
